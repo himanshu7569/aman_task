@@ -83,8 +83,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: const [
-            Text("Task App"),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text("Task App"),
+            Image.network(
+                "https://media.gettyimages.com/photos/mid-adult-indian-woman-doing-daily-chores-in-red-saree-outdoorsindia-picture-id1313525521?s=2048x2048"),
           ],
         ),
       ),

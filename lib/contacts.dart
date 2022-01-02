@@ -8,11 +8,11 @@ class ContactFields {
 }
 
 class ContactLocal {
-  final int? id;
-  final String name;
-  final String number;
+  int? id;
+  String? name;
+  String? number;
 
-  const ContactLocal({this.id, required this.name, required this.number});
+  ContactLocal({this.id, required this.name, required this.number});
 
   Map<String, Object?> toJson() => {
         ContactFields.id: id,
@@ -24,4 +24,10 @@ class ContactLocal {
       id: id ?? this.id,
       name: name ?? this.name,
       number: number ?? this.number);
+
+  ContactLocal.fromMap(Map<String, Object?> map) {
+    id = 1;
+    name = map[name].toString();
+    number = map[number].toString();
+  }
 }

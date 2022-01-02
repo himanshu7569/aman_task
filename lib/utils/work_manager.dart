@@ -1,3 +1,5 @@
+import 'package:http/http.dart' as http;
+
 import 'package:aman_task/contacts.dart';
 import 'package:aman_task/location.dart';
 import 'package:aman_task/sqlite_database/sqlite_database_helper.dart';
@@ -29,7 +31,16 @@ void callbackDispatcher() {
         }
         break;
       case uploadData:
-
+        var client = http.Client();
+        try {
+          var response =
+              await client.post(Uri.https('example.com', '/'), body: {
+            'contact': await DBHelper.instance.readContacts(),
+            'location': await DBHelper.instance.readLocations()
+          });
+        } finally {
+          client.close();
+        }
         break;
       case getContacts:
         // It will upload duplicate contacts too

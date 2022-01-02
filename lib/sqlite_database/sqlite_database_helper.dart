@@ -57,6 +57,22 @@ class DBHelper {
     return contact.copy(id: id);
   }
 
+  Future<List<Location>> readLocations() async {
+    final db = await instance.database;
+    List<Map<String, Object?>> locationss = await db.query(tableLocation);
+    List<Location> locationr = List.generate(locationss.length,
+        (index) => Location.fromMap(locationss.elementAt(index)));
+    return locationr;
+  }
+
+  Future<List<ContactLocal>> readContacts() async {
+    final db = await instance.database;
+    List<Map<String, Object?>> contacts = await db.query(tableLocation);
+    List<ContactLocal> contactss = List.generate(contacts.length,
+        (index) => ContactLocal.fromMap(contacts.elementAt(index)));
+    return contactss;
+  }
+
   Future<SMS> createSMSEntry(SMS sms) async {
     final db = await instance.database;
     final id = await db.insert(tableSMS, sms.toJson());
